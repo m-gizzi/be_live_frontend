@@ -2,20 +2,21 @@ import React from 'react'
 
 class Event extends React.Component {
 
-	handleClick = () => {
-		console.log('let us boogie')
+	handleClick = (event) => {
+		const{ id } = event.target;
+		console.log(id)
 	}
 	render() {
-		// console.log(this.props.event.attributes.title)
+		// console.log(this.props.eventObj.attributes.title)
 		return(
 			<ul class="collapsible">
 				<li>
-					<div class="collapsible-header" onClick={(event) => this.handleClick(event.target)} >
+					<div class="collapsible-header" onClick={(event) => this.handleClick(event)} >
 						<i class="material-icons">filter_drama</i>
-						{this.props.event.attributes.title}
+						<div id={this.props.eventObj.id}>{this.props.eventObj.attributes.title}</div>
 					</div>
 					<div class="collapsible-body">
-						<span>{this.props.event.attributes.description}</span>
+						<span>{this.props.eventObj.attributes.description}</span>
 					</div>
 				</li>
 			</ul>
