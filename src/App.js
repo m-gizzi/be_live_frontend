@@ -31,15 +31,16 @@ render() {
   console.log(this.state)
   return (
     <div className="container">
-    <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo center">Upcoming Events</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">BE_LIVE</a></li>
-      </ul>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center">Upcoming Events</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">BE_LIVE</a></li>
+          </ul>
+        </div>
+      </nav>
+      <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
     </div>
-  </nav>
-    <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
   );
 }
 }
