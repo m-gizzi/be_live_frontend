@@ -1,13 +1,13 @@
 import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+import SearchBar from './components/SearchBar'
 
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      events: []
+      events: [],
+      searchTerm: ''
     }
   }
 
@@ -21,16 +21,17 @@ class App extends React.Component {
       })
   }
 
+  handleSearchTermChange = (event) => {
+    this.setState({
+        searchTerm: event.target.value
+    })
+}
+
 render() {
-  console.log(this.state.events)
+  console.log(this.state)
   return (
     <div className="container">
-        <ul className="collection">
-        <a href="#!" className="collection-item"><div>Alvinn</div></a>
-          <li className="collection-item">Alvin</li>
-          <li className="collection-item">Alvin</li>
-          <li className="collection-item">Alvin</li>
-        </ul>
+      <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
     </div>
   );
 }
