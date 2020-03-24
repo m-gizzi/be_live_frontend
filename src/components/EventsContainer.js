@@ -5,7 +5,7 @@ class EventsContainer extends React.Component {
 	renderData = () => {
 		return this.props.events.map(eventObj => {
 
-			return <Event event={eventObj} />
+			return <Event eventObj={eventObj} />
 		})
 		    
 	}
