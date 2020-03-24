@@ -16,8 +16,9 @@ class App extends React.Component {
     fetch('http://localhost:3000/events')
       .then(resp => resp.json())
       .then(eventsData => {
+        // console.log(eventsData)
         this.setState({
-          events: eventsData
+          events: eventsData.data
         })
       })
   }
@@ -29,14 +30,14 @@ class App extends React.Component {
 }
 
 render() {
-  console.log(this.state)
+  // console.log(this.state.events.data)
   return (
     <div className="container">
       <nav>
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Upcoming Events</a>
+          <a href="/" class="brand-logo center">Upcoming Events</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">BE_LIVE</a></li>
+            <li><a href="/">BE_LIVE</a></li>
           </ul>
         </div>
       </nav>
