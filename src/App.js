@@ -24,14 +24,14 @@ class App extends React.Component {
 render() {
   console.log(this.state.events)
   return (
-    <div className="container">
-        <ul className="collection">
-        <a href="#!" className="collection-item"><div>Alvinn</div></a>
-          <li className="collection-item">Alvin</li>
-          <li className="collection-item">Alvin</li>
-          <li className="collection-item">Alvin</li>
-        </ul>
+    <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Upcoming Events</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#">BE_LIVE</a></li>
+      </ul>
     </div>
+  </nav>
   );
 }
 }
