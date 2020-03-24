@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchBar from './components/SearchBar'
+import EventsContainer from './components/EventsContainer'
 
 
 class App extends React.Component {
@@ -14,9 +15,9 @@ class App extends React.Component {
   componentDidMount() {
     fetch('http://localhost:3000/events')
       .then(resp => resp.json())
-      .then(eventData => {
+      .then(eventsData => {
         this.setState({
-          events: eventData
+          events: eventsData
         })
       })
   }
@@ -40,6 +41,7 @@ render() {
         </div>
       </nav>
       <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
+      <EventsContainer events={this.state.events} />
     </div>
   );
 }
