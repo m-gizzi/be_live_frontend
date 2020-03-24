@@ -1,6 +1,7 @@
 import React from 'react';
 import SearchBar from './components/SearchBar'
 import EventsContainer from './components/EventsContainer'
+import NewEventForm from './components/NewEventForm'
 
 
 class App extends React.Component {
@@ -23,6 +24,12 @@ class App extends React.Component {
       })
   }
 
+  addNewEventToState = (response) => {
+    this.setState({
+      events: response
+    })
+  }
+
   handleSearchTermChange = (event) => {
     this.setState({
         searchTerm: event.target.value
@@ -34,15 +41,16 @@ render() {
   return (
     <div className="container">
       <nav>
-        <div class="nav-wrapper">
-          <a href="/" class="brand-logo center">Upcoming Events</a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">BE_LIVE</a></li>
-          </ul>
+<div className="nav-wrapper">
+          <a href="#" className="brand-logo center">Upcoming Events</a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li><a href="#">BE_LIVE</a></li>
+         </ul>
         </div>
       </nav>
       <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
       <EventsContainer events={this.state.events} />
+      <NewEventForm addNewEventToState={this.addNewEventToState} />
     </div>
   );
 }
