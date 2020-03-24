@@ -17,8 +17,9 @@ class App extends React.Component {
     fetch('http://localhost:3000/events')
       .then(resp => resp.json())
       .then(eventsData => {
+        // console.log(eventsData)
         this.setState({
-          events: eventsData
+          events: eventsData.data
         })
       })
   }
@@ -36,15 +37,15 @@ class App extends React.Component {
 }
 
 render() {
-  console.log(this.state)
+  // console.log(this.state.events.data)
   return (
     <div className="container">
       <nav>
-        <div className="nav-wrapper">
+<div className="nav-wrapper">
           <a href="#" className="brand-logo center">Upcoming Events</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><a href="#">BE_LIVE</a></li>
-          </ul>
+         </ul>
         </div>
       </nav>
       <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
