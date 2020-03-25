@@ -9,37 +9,32 @@ class App extends React.Component {
     super()
     this.state = {
       events: [],
-      users: [],
-      tags: [],
-      searchTerm: ''
+      searchTerm: '',
+      filterObj: {
+        publicOnly: false,
+        currentlyOngoing: false,
+        userRSVPd: false,
+        norwegian: false
+      }
     }
   }
 
   componentDidMount() {
     fetch('http://localhost:3000/events')
       .then(resp => resp.json())
-      .then(eventsData => {
-        const users = eventsData.included.filter(entry => 
-          entry.type === 'user')
-        const tags = eventsData.included.filter(entry => 
-          entry.type === 'tag')          
+      .then(eventsData => {       
         this.setState({
-          events: eventsData.data,
-          users: users,
-          tags: tags
+          events: eventsData.data
         })
+      })
+      .catch(error => {
+        console.log(error)
       })
   }
 
-  addNewEventToState = (eventsData) => {
-    const users = eventsData.included.filter(entry => 
-      entry.type === 'user')
-    const tags = eventsData.included.filter(entry => 
-      entry.type === 'tag')          
+  addNewEventToState = (eventsData) => {      
     this.setState({
       events: eventsData.data,
-      users: users,
-      tags: tags
     })
   }
 
@@ -49,8 +44,37 @@ class App extends React.Component {
     })
 }
 
+  handleFilterChange = (event) => {
+    event.persist()
+    this.setState(prevState => ({
+      filterObj: {
+        ...this.state.filterObj,
+        [event.target.name]: !(prevState.filterObj[event.target.name])
+      }
+    }))
+  }
+
+  searchAndFilterResults = () => {
+    let searchResults
+    if (this.state.searchTerm === '') {
+      searchResults = this.state.events
+    } else {
+        searchResults = this.state.events.filter(event => {
+        return event.attributes.tags.find(tag => {
+          return tag.tag_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+        })
+      })
+    }
+    let publicOnlyResults
+    if (this.state.filterObj.publicOnly) {
+      publicOnlyResults = searchResults.filter
+    }
+
+    return searchResults
+  }
+
 render() {
-  console.log(this.state)
+  // console.log(this.state)
   return (
     <div className="container">
       <nav>
@@ -61,8 +85,12 @@ render() {
          </ul>
         </div>
       </nav>
-      <SearchBar handleSearchTermChange={this.handleSearchTermChange} searchTerm={this.state.searchTerm} />
-      <EventsContainer events={this.state.events} />
+      <SearchBar
+        handleSearchTermChange={this.handleSearchTermChange}
+        searchTerm={this.state.searchTerm}
+        handleFilterChange={this.handleFilterChange}
+      />
+      <EventsContainer events={this.searchAndFilterResults()} />
       <NewEventForm addNewEventToState={this.addNewEventToState} />
     </div>
   );
