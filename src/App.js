@@ -60,17 +60,34 @@ class App extends React.Component {
       searchResults = this.state.events
     } else {
         searchResults = this.state.events.filter(event => {
-        return event.attributes.tags.find(tag => {
-          return tag.tag_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
-        })
+          const descriptionCheck = event.attributes.description.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+          const titleCheck = event.attributes.title.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+          const tagCheck = event.attributes.tags.find(tag => {
+            return tag.tag_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+          })
+          return tagCheck || descriptionCheck || titleCheck
       })
     }
+
     let publicOnlyResults
     if (this.state.filterObj.publicOnly) {
-      publicOnlyResults = searchResults.filter
+      publicOnlyResults = searchResults.filter(event => {
+        return !event.attributes.private
+      })
+    } else {
+      publicOnlyResults = searchResults
     }
 
-    return searchResults
+    let ongoingResults
+    if (this.state.filterObj.currentlyOngoing) {
+      ongoingResults = publicOnlyResults.filter(event => {
+        return event.attributes.ongoing
+      })
+    } else {
+      ongoingResults = publicOnlyResults
+    }
+
+    return ongoingResults
   }
 
 render() {
