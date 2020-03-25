@@ -1,6 +1,14 @@
 import React from 'react'
+import M from 'materialize-css'
 
 class Event extends React.Component {
+
+	componentDidMount = () => {
+		const elems = document.querySelectorAll('.collapsible');
+		const instances = M.Collapsible.init(elems, {
+			accordion: true
+		  });
+	}
 
 	handleClick = (event) => {
 		const{ id } = event.target;
@@ -9,7 +17,6 @@ class Event extends React.Component {
 	render() {
 		// console.log(this.props.eventObj.attributes.title)
 		return(
-			<ul class="collapsible">
 				<li>
 					<div class="collapsible-header" onClick={(event) => this.handleClick(event)} >
 						<i class="material-icons">filter_drama</i>
@@ -19,7 +26,6 @@ class Event extends React.Component {
 						<span>{this.props.eventObj.attributes.description}</span>
 					</div>
 				</li>
-			</ul>
 		)
 	}
 }
