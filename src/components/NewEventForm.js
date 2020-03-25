@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import M from "materialize-css"
 
 export default class NewEventForm extends Component {
     constructor() {
@@ -12,8 +13,16 @@ export default class NewEventForm extends Component {
             private: false,
             url: "www.facebook.com",
             img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrTDhOIlFbP2CK2SqjG7w9QL0uB7S2iHau3talnbpizQrX9DD_",
-            host_id: 5
+            host_id: 2
         }
+    }
+
+    componentDidMount = () => {
+        const elems = document.querySelectorAll('.fixed-action-btn');
+        const instances = M.FloatingActionButton.init(elems, {
+            direction: 'left',
+            hoverEnabled: false
+          });
     }
 
     handleSubmit = (event) => {
@@ -38,9 +47,26 @@ export default class NewEventForm extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} >
-                <input type='submit' />
-            </form>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red">
+                    <i class="large material-icons">add</i>
+                </a>
+                <ul>
+                    <li>
+                        <form class="btn-floating" onSubmit={this.handleSubmit} >
+                            <input type='submit' />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+
+
+
+
+
+
+
         )
     }
 }
