@@ -38,7 +38,7 @@ export default class NewEventForm extends Component {
         fetch('http://localhost:3000/events', reqObj)
         .then(resp => resp.json())
         .then(newEvent => {
-            this.props.addNewEventToState(newEvent.data)
+            this.props.addNewEventToState(newEvent)
         })
         .catch(error => {
             console.log('Error:', error);
