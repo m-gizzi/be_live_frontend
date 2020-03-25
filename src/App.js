@@ -9,6 +9,8 @@ class App extends React.Component {
     super()
     this.state = {
       events: [],
+      users: [],
+      tags: [],
       searchTerm: ''
     }
   }
@@ -17,16 +19,27 @@ class App extends React.Component {
     fetch('http://localhost:3000/events')
       .then(resp => resp.json())
       .then(eventsData => {
-        // console.log(eventsData)
+        const users = eventsData.included.filter(entry => 
+          entry.type === 'user')
+        const tags = eventsData.included.filter(entry => 
+          entry.type === 'tag')          
         this.setState({
-          events: eventsData.data
+          events: eventsData.data,
+          users: users,
+          tags: tags
         })
       })
   }
 
-  addNewEventToState = (response) => {
+  addNewEventToState = (eventsData) => {
+    const users = eventsData.included.filter(entry => 
+      entry.type === 'user')
+    const tags = eventsData.included.filter(entry => 
+      entry.type === 'tag')          
     this.setState({
-      events: response
+      events: eventsData.data,
+      users: users,
+      tags: tags
     })
   }
 
@@ -37,7 +50,7 @@ class App extends React.Component {
 }
 
 render() {
-  // console.log(this.state.events.data)
+  console.log(this.state)
   return (
     <div className="container">
       <nav>
