@@ -12,13 +12,13 @@ const SearchBar = (props) => {
                 <div className="input-field col s3">
                     <p>
                         <label>
-                            <input type="checkbox" className="filled-in"/>
+                            <input onChange={props.handleFilterChange} name="publicOnly" type="checkbox" className="filled-in"/>
                             <span>Public only</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" className="filled-in"/>
+                            <input onChange={props.handleFilterChange} name='currentlyOngoing' type="checkbox" className="filled-in"/>
                             <span>Currently ongoing</span>
                         </label>
                     </p>
@@ -26,13 +26,13 @@ const SearchBar = (props) => {
                 <div className="input-field col s3">
                     <p>
                         <label>
-                            <input type="checkbox" className="filled-in"/>
+                            <input onChange={props.handleFilterChange} name='userRSVPd' type="checkbox" className="filled-in"/>
                             <span>You've RSVP'd</span>
                         </label>
                     </p>
                     <p>
                         <label>
-                            <input type="checkbox" className="filled-in"/>
+                            <input onChange={props.handleFilterChange} name='norwegian' type="checkbox" className="filled-in"/>
                             <span>Norwegian Death Metal</span>
                         </label>
                     </p>
