@@ -13,7 +13,9 @@ class EventsContainer extends React.Component {
 	render() {
 		// console.log(this.props)
 		return(
-		<div>{this.renderData()}</div>
+			<ul class="collapsible">
+				{this.renderData()}
+			</ul>
 		)
 	}
 }
