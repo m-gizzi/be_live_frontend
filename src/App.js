@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from './components/SearchBar'
 import EventsContainer from './components/EventsContainer'
 import NewEventForm from './components/NewEventForm'
+import Login from './components/Login';
 
 
 class App extends React.Component {
@@ -96,9 +97,9 @@ render() {
     <div className="container">
       <nav>
 <div className="nav-wrapper">
-          <a href="#" className="brand-logo center">Upcoming Events</a>
+          <a href="/" className="brand-logo center">Upcoming Events</a>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><a href="#">BE_LIVE</a></li>
+            <li><a href="/">BE_LIVE</a></li>
          </ul>
         </div>
       </nav>
@@ -109,6 +110,7 @@ render() {
       />
       <EventsContainer events={this.searchAndFilterResults()} />
       <NewEventForm addNewEventToState={this.addNewEventToState} />
+      <Login />
     </div>
   );
 }
