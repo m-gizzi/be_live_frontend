@@ -19,7 +19,7 @@ const SearchBar = (props) => {
                     <p>
                         <label>
                             <input onChange={props.handleFilterChange} name='currentlyOngoing' type="checkbox" className="filled-in"/>
-                            <span>Currently ongoing</span>
+                            <span>Ongoing</span>
                         </label>
                     </p>
                 </div>

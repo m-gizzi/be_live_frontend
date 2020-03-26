@@ -24,7 +24,7 @@ class Event extends React.Component {
 	render() {
 
 		const { host } = this.props.eventObj.attributes
-		const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
+		const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', timeZone: 'UTC' }
 		const eventStart = new Date(this.props.eventObj.attributes.start_date).toLocaleDateString('en-US', DATE_OPTIONS)
 		const eventEnd = new Date(this.props.eventObj.attributes.end_date).toLocaleDateString('en-US', DATE_OPTIONS) 
 		return(
@@ -37,7 +37,7 @@ class Event extends React.Component {
 							<p><span>- {eventEnd}</span></p>
 						</div>
 						<div className="col s2">
-							<p><img style={{maxHeight:130, maxWidth:130}} className="responsive-img" alt={this.props.eventObj.attributes.title} src={this.props.eventObj.attributes.img_url} /></p>
+							<p><img className="responsive-img" alt={this.props.eventObj.attributes.title} src={this.props.eventObj.attributes.img_url} /></p>
 						</div>
 						<div className="col s4">
 							<h5>{this.props.eventObj.attributes.title}</h5>
