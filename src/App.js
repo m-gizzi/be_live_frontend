@@ -88,7 +88,16 @@ class App extends React.Component {
       ongoingResults = publicOnlyResults
     }
 
-    return ongoingResults
+    const sortedResults = ongoingResults.sort((a, b) => {
+      if (a.attributes.start_date > b.attributes.start_date) {
+        return 1
+      }
+      if (a.attributes.start_date < b.attributes.start_date) {
+        return -1
+      }
+    })
+
+    return sortedResults
   }
 
 render() {
