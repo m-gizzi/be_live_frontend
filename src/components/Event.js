@@ -23,7 +23,7 @@ class Event extends React.Component {
 	render() {
 
 		const { host } = this.props.eventObj.attributes
-		const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
+		const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' }
 		const eventStart = new Date(this.props.eventObj.attributes.start_date).toLocaleDateString('en-US', DATE_OPTIONS)
 		const eventEnd = new Date(this.props.eventObj.attributes.end_date).toLocaleDateString('en-US', DATE_OPTIONS) 
 		return(
@@ -31,7 +31,7 @@ class Event extends React.Component {
 					<div class="collapsible-header" onClick={() => this.handleClick(host)}>
 					
 					<div class="row">
-						<div style={{maxWidth:100}} class="col s2">
+						<div style={{maxWidth:100}} class="col s3 offset-s1">
 							<p><span>{eventStart}</span></p>
 							<p><span>- {eventEnd}</span></p>
 						</div>
@@ -39,10 +39,10 @@ class Event extends React.Component {
 							<p><img style={{maxHeight:130, maxWidth:130}} class="responsive-img" src={this.props.eventObj.attributes.img_url} /></p>
 						</div>
 						<div class="col s4">
-							<span class="flow-text">{this.props.eventObj.attributes.title}</span>
+							<h5>{this.props.eventObj.attributes.title}</h5>
 							<p>click for description</p>
 						</div>
-						<div class="col s2">
+						<div class="col s1">
 							<p>host: {host.name}</p>
 							<p>
 							{this.props.eventObj.attributes.private 
@@ -52,7 +52,7 @@ class Event extends React.Component {
 							</p>
 						</div>	
 						<div class="col s2">
-							<span class="flow-text">RSVPs:</span>
+							<p>RSVPs:</p>
 							<p>{this.renderRsvpUsers()}</p>
 						</div>
 						</div>
