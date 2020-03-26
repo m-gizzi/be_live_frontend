@@ -87,7 +87,7 @@ export default class NewEventForm extends Component {
     }
 
     render() {
-        console.log(this.state.formData)
+        // console.log(this.state.formData)
         return (
             <div>
                 <div className="modal-trigger fixed-action-btn" id='action-button' data-target="modal1" >
@@ -100,18 +100,18 @@ export default class NewEventForm extends Component {
                         <form onSubmit={this.handleSubmit} >
                             <label htmlFor='title'>Title of Event</label>
                             <input onChange={this.handleFormTyping} id='title' type='text' name='title' value={this.state.formData.title} /><br />
-                            <div class="row">
+                            <div className="row">
                                 <div className="col s6">
                                     <label htmlFor='start_date'>Start Date</label>
                                     <input id='start_date' type='text' className="datepicker" name='start_date' /><br />
                                     <label htmlFor='start_time'>Start Time</label>
-                                    <input id='start_time' type="text" class="timepicker" />
+                                    <input id='start_time' type="text" className="timepicker" />
                                 </div>
                                 <div className="col s6">
                                     <label htmlFor='end_date'>End Date</label>
                                     <input id='end_date' type='text' className="datepicker" name='end_date' /><br />
                                     <label htmlFor='end_time'>End Time</label>
-                                    <input id='end_time' type="text" class="timepicker" />
+                                    <input id='end_time' type="text" className="timepicker" />
                                 </div>
                             </div>
                             <label>
