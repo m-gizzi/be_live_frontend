@@ -3,7 +3,6 @@ import Event from '../components/Event';
 
 class EventsContainer extends React.Component {
 	renderData = () => {
-		// console.log(this.props.events)
 		return this.props.events.map(eventObj => {
 
 			return <Event eventObj={eventObj} />
@@ -12,9 +11,9 @@ class EventsContainer extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
+		// console.log(this.props)
 		return(
-			<ul class="collapsible">
+			<ul className="collapsible">
 				{this.renderData()}
 			</ul>
 		)
