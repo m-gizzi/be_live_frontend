@@ -21,33 +21,29 @@ class Event extends React.Component {
 	}
 
 	render() {
-		// console.log('----', this.props.eventObj.attributes.host_id)
-		// const { host_id } = this.props.eventObj.attributes
+
 		const { host } = this.props.eventObj.attributes
-		// const { users } = this.props.eventObj.attributes
-		// console.log('hopefully user name:', host.name)
-		// const privateStatus = <i class="material-icons">contact_mail</i>
-		const smallFont = {
-			fontSize: "10px"
-		}
+		const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
+		const eventStart = new Date(this.props.eventObj.attributes.start_date).toLocaleDateString('en-US', DATE_OPTIONS)
+		const eventEnd = new Date(this.props.eventObj.attributes.end_date).toLocaleDateString('en-US', DATE_OPTIONS) 
 		return(
 				<li>
 					<div class="collapsible-header" onClick={() => this.handleClick(host)}>
 					
 					<div class="row">
-						<div style={{maxWidth:100}} class="col s1">
-							<span>{this.props.eventObj.attributes.start_date}</span>
-							<span>- {this.props.eventObj.attributes.end_date}</span>
+						<div style={{maxWidth:100}} class="col s2">
+							<p><span>{eventStart}</span></p>
+							<p><span>- {eventEnd}</span></p>
 						</div>
-						<div class="col s1 offset-s2">
-							<img style={{maxHeight:100}} class="circle responsive-img" src={this.props.eventObj.attributes.img_url} />
+						<div class="col s2">
+							<p><img style={{maxHeight:130, maxWidth:130}} class="responsive-img" src={this.props.eventObj.attributes.img_url} /></p>
 						</div>
 						<div class="col s4">
-							<span class="flow-text">{this.props.eventObj.attributes.title}</span><br />
-							<span>click for description</span>
+							<span class="flow-text">{this.props.eventObj.attributes.title}</span>
+							<p>click for description</p>
 						</div>
-						<div class="col s1">
-							<span>host: {host.name}</span>
+						<div class="col s2">
+							<p>host: {host.name}</p>
 							<p>
 							{this.props.eventObj.attributes.private 
 							? <i class="material-icons">contact_mail</i>
@@ -55,14 +51,12 @@ class Event extends React.Component {
 							}
 							</p>
 						</div>	
-						<div class="col s1 offset-s1">
+						<div class="col s2">
 							<span class="flow-text">RSVPs:</span>
 							<p>{this.renderRsvpUsers()}</p>
 						</div>
 						</div>
-					
 						</div>
-					
 					<div class="collapsible-body">
 						<span>{this.props.eventObj.attributes.description}</span>
 					</div>
