@@ -7,16 +7,15 @@ export default class NewEventForm extends Component {
         this.state = {
             formData: {
                 title: "",
-                start_date: "2020-04-06 00:00:00",
-                end_date: "2020-04-20 00:00:00",
+                start_date: "",
+                end_date: "",
                 ongoing: false,
-                description: "Join us as we all shout fuck you together, but onl...",
+                description: "",
                 private: false,
-                url: "www.facebook.com",
-                img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTrTDhOIlFbP2CK2SqjG7w9QL0uB7S2iHau3talnbpizQrX9DD_",
-                host_id: 9
-            },
-            formViewable: false
+                url: "",
+                img_url: "",
+                host_id: 2
+            }
         }
     }
 
@@ -30,10 +29,26 @@ export default class NewEventForm extends Component {
         M.Modal.init(elemsTwo);
         const elemsThree = document.querySelectorAll('.datepicker');
         M.Datepicker.init(elemsThree);
+        const elemsFour = document.querySelectorAll('.timepicker');
+        M.Timepicker.init(elemsFour);
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
+        const startDateForm = document.getElementById('start_date').value
+        const endDateForm = document.getElementById('end_date').value
+        const startTimeForm = document.getElementById('start_time').value
+        const endTimeForm = document.getElementById('end_time').value
+        this.setState({
+            formData: {
+                ...this.state.formData,
+                start_date: (startDateForm + ' ' + startTimeForm),
+                end_date: (endDateForm + ' ' + endTimeForm)
+            }
+        }, this.sendFetch)
+    }
+
+    sendFetch = () => {
         const reqObj = {
             method: 'POST',
             headers: {
@@ -62,7 +77,7 @@ export default class NewEventForm extends Component {
     }
 
     handleCheckBox = (event) => {
-        console.log(event.target)
+        // console.log(event.target)
         this.setState({
             formData: {
                 ...this.state.formData,
@@ -71,13 +86,8 @@ export default class NewEventForm extends Component {
         })
     }
 
-    handleCalendar = (event) => {
-        // event.persist()
-        console.log(event.target.value)
-    }
-
     render() {
-        // console.log(this.state.formData)
+        console.log(this.state.formData)
         return (
             <div>
                 <div className="modal-trigger fixed-action-btn" id='action-button' data-target="modal1" >
@@ -85,17 +95,39 @@ export default class NewEventForm extends Component {
                         <i className="large material-icons">add</i>
                     </a>
                 </div>
-                <div id="modal1" className="modal">
+                <div id="modal1" className="modal" style={{maxHeight:'90%'}}>
                     <div className="modal-content" >
                         <form onSubmit={this.handleSubmit} >
                             <label htmlFor='title'>Title of Event</label>
                             <input onChange={this.handleFormTyping} id='title' type='text' name='title' value={this.state.formData.title} /><br />
-                            <label htmlFor='start_date'>Start Date</label>
-                            <input id='start_date' type='text' className="datepicker" name='start_date' /><br />
+                            <div class="row">
+                                <div className="col s6">
+                                    <label htmlFor='start_date'>Start Date</label>
+                                    <input id='start_date' type='text' className="datepicker" name='start_date' /><br />
+                                    <label htmlFor='start_time'>Start Time</label>
+                                    <input id='start_time' type="text" class="timepicker" />
+                                </div>
+                                <div className="col s6">
+                                    <label htmlFor='end_date'>End Date</label>
+                                    <input id='end_date' type='text' className="datepicker" name='end_date' /><br />
+                                    <label htmlFor='end_time'>End Time</label>
+                                    <input id='end_time' type="text" class="timepicker" />
+                                </div>
+                            </div>
                             <label>
                             <input onChange={this.handleCheckBox} name='ongoing' type="checkbox" className="filled-in" />
                             <span>Check this box for events with no defined start or end time</span>
-                            </label><br />                 
+                            </label><br />
+                            <label htmlFor='description'>Description of Event</label>
+                            <input onChange={this.handleFormTyping} type='text' id='description' name='description' value={this.state.formData.description} /><br />                 
+                            <label>
+                            <input onChange={this.handleCheckBox} name='private' type="checkbox" className="filled-in" />
+                            <span>Check if this is a private event (url not required for private events)</span>
+                            </label><br />
+                            <label htmlFor='url'>Event URL</label>
+                            <input onChange={this.handleFormTyping} type='text' id='url' name='url' value={this.state.formData.url} /><br />                 
+                            <label htmlFor='img_url'>Image URL</label>
+                            <input onChange={this.handleFormTyping} type='text' id='img_url' name='img_url' value={this.state.formData.img_url} /><br />                 
                             <br/><input type='submit' />
                         </form>
                     </div>
