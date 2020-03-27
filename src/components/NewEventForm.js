@@ -128,7 +128,7 @@ export default class NewEventForm extends Component {
                             <input onChange={this.handleFormTyping} type='text' id='url' name='url' value={this.state.formData.url} /><br />                 
                             <label htmlFor='img_url'>Image URL</label>
                             <input onChange={this.handleFormTyping} type='text' id='img_url' name='img_url' value={this.state.formData.img_url} /><br />                 
-                            <br/><input type='submit' />
+                            <br/><input type='submit' className="modal-close" href="/" />
                         </form>
                     </div>
                 </div>
