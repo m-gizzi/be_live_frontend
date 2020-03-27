@@ -16,7 +16,8 @@ class App extends React.Component {
         currentlyOngoing: false,
         userRSVPd: false,
         norwegian: false
-      }
+      },
+      currentUser: undefined
     }
   }
 
@@ -53,6 +54,10 @@ class App extends React.Component {
         [event.target.name]: !(prevState.filterObj[event.target.name])
       }
     }))
+  }
+
+  handleCurrentUserChange = (user) => {
+    console.log(user)
   }
 
   searchAndFilterResults = () => {
@@ -119,7 +124,7 @@ render() {
       />
       <EventsContainer events={this.searchAndFilterResults()} />
       <NewEventForm addNewEventToState={this.addNewEventToState} />
-      <Login />
+      {/* <Login handleCurrentUserChange={this.handleCurrentUserChange} /> */}
     </div>
   );
 }
