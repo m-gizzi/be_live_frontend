@@ -41,7 +41,7 @@ class Event extends React.Component {
 						</div>
 						<div className="col s4">
 							<h5>{this.props.eventObj.attributes.title}</h5>
-							<p>click for description</p>
+							<a href={`http://${this.props.eventObj.attributes.url}`}>link</a>
 						</div>
 						<div className="col s1">
 							<p>host: {host.name}</p>
