@@ -32,9 +32,19 @@ class Event extends React.Component {
 					<div className="collapsible-header" onClick={() => this.handleClick(host)}>
 					
 					<div className="row">
+						
 						<div style={{maxWidth:100}} className="col s3 offset-s1">
-							<p><span>{eventStart}</span></p>
-							<p><span>- {eventEnd}</span></p>
+							<p>
+							{this.props.eventObj.attributes.private
+							? <p>ongoing</p>
+							: <p>{eventStart}- {eventEnd}</p>
+							}
+							{/* {if ({this.props.eventObj.attributes.ongoing}) {
+								<p>ongoing</p>
+							} else {
+								<span>eventStart</span><span>- eventEnd</span>
+							}} */}
+							</p>
 						</div>
 						<div className="col s2">
 							<p><img className="responsive-img" alt={this.props.eventObj.attributes.title} src={this.props.eventObj.attributes.img_url} /></p>
