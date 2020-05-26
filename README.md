@@ -1,6 +1,6 @@
 # Be_Live
 
-Be_Live is a community-maintained calendar for virtual events that one can attend from home. It was created by @m-gizzi and [@abarrdev](https://github.com/abarrdev) days after our state initiated a stay-at-home order due to the COVID-19 outbreak.
+Be_Live is a community-maintained calendar for virtual events that one can attend from home. It was created by [@m-gizzi](https://github.com/m-gizzi) and [@abarrdev](https://github.com/abarrdev) days after our state initiated a stay-at-home order due to the COVID-19 outbreak.
 
 
 ## Current Features
@@ -46,15 +46,15 @@ Alternatively see the GitHub documentation on [creating a pull request](https://
 
 ## Contact
 
-Andrea can be reached via...
-<andrea@andreabarr.dev>
-GitHub: [@abarrdev](https://github.com/abarrdev)
-[LinkedIn](https://www.linkedin.com/in/abarrdev/)
+Andrea can be reached via...  
+<andrea@andreabarr.dev>  
+GitHub: [@abarrdev](https://github.com/abarrdev)  
+[LinkedIn](https://www.linkedin.com/in/abarrdev/)  
 
-Matthew can be reached via...
-<matthewgizzi@verizon.net>
-GitHub: [@m-gizzi](https://github.com/abarrdev)
-[LinkedIn](https://www.linkedin.com/in/matthew-gizzi-7b48552b/)
+Matthew can be reached via...  
+<matthewgizzi@verizon.net>  
+GitHub: [@m-gizzi](https://github.com/abarrdev)  
+[LinkedIn](https://www.linkedin.com/in/matthew-gizzi-7b48552b/)  
 
 
 ## License
